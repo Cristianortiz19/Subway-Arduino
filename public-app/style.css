@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+input{
+    border-radius: 8px;
+    height: 32px;
+    padding: 20px;
+    border: 0;
+    background-color: #e4e4e4;
+    color: #797979;
+    font-style: normal;
+    font-family: 'Poppins';
+    font-size: 16px;
+}
+
+button {
+    background-color: white;
+    border-radius: 50px;
+    border: 0;
+    color: #119C4A;
+    font-style: normal;
+    font-family: 'Poppins';
+    font-size: 16px;
+  }
