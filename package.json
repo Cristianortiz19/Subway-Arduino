@@ -1,5 +1,5 @@
 {
-  "name": "lab-apps-eco-websocket-server-ngrok-teacher",
+  "name": "subway-arduino",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,9 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.1",
+    "serialport": "^10.4.0",
     "socket.io": "^4.5.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.20"
   }
 }
