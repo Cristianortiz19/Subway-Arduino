@@ -2,12 +2,12 @@ const NGROK = `https://${window.location.hostname}`;
 let socket = io(NGROK, { path: '/real-time' });
 console.log('Server IP: ', NGROK);
 
-let mupiScreen = 0;
-let mupiIngredients = null;
-
-let fillIngredients = [];
+let mupiScreen = 4;
+let ingredients = [];
+let userSandwich = [];
 
 let mupiImageFiles = [];
+
 
 let results = null;
 
@@ -36,38 +36,39 @@ function draw() {
 
             break;
         case 1:
-            image(mupiImageFiles[1], 0, 0, 480, 720);
+            background(255);
+            image(mupiImageFiles[0], 0, 0, 480, 720);
             break;
         case 2:
-            image(mupiImageFiles[2], 0, 0, 480, 720);
+            image(mupiImageFiles[1], 0, 0, 480, 720);
             break;
         case 3:
             background(0, 102,42);
             imageMode(CORNER);
-            image(mupiImageFiles[3], 0, 0, 480, 720);
+            image(mupiImageFiles[2], 0, 0, 480, 720);
             imageMode(CENTER);
-            image(mupiImageFiles[20], windowWidth/2, 600, 300, 300);
-            mupiIngredients.forEach((element, index) => {
+            image(mupiImageFiles[20], 240, 630, 400, 400);
+            ingredients.forEach((element, index) => {
                 imageMode(CENTER);
-                image(element.imageFile, 240, (80 * index) + 240, 230, 230);
+                image(element.imageFile, 240, (55 * index) + 400, 280, 280);
             });
-            image(mupiImageFiles[20], windowWidth/2, 170, 300, 300);
+            image(mupiImageFiles[20], 240, 320, 400, 400);
             break;
         case 4:
             imageMode(CORNER);
             image(mupiImageFiles[4], 0, 0, 480, 720);
             imageMode(CENTER);
-            image(mupiImageFiles[20], windowWidth/2, 600, 300, 300);
-            fillIngredients.forEach((element, index) => {
+            image(mupiImageFiles[20], 240, 480, 290, 290);
+            userSandwich.forEach((element, index) => {
                 imageMode(CENTER);
-                image(element.imageFile, 240, (80 * index) + 240, 230, 230);
+                image(element.imageFile, 240, (40 * index) + 310, 200, 200);
             });
-            image(mupiImageFiles[20], windowWidth/2, 170, 300, 300);
+            image(mupiImageFiles[20], 240, 250, 290, 290);
 
-            if(results == true){
+            /*if(results == true){
                 imageMode(CORNER);
                 image(mupiImageFiles[5], 0, 0, 480, 720)
-            }
+            }*/
             break;
         case 6:
             background(0, 102,42);
@@ -89,37 +90,13 @@ timer = function() {
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 }
-//Recibir información sobre la pantalla actual
-socket.on('mupi-screen', screen => {
-    let { mobileScreen, result } = screen;
-    mupiScreen = mobileScreen;
-    results = result;
-})
-
-//Recibir ingredientes
-socket.on('mupi-ingredients', ingredients => {
-    mupiIngredients = ingredients;
-    console.log('Ingredients-received!')
-    console.log(mupiIngredients)
-    mupiIngredients.forEach(ingredient => {
-        ingredient.imageFile = loadImage('src/'+ingredient.ingredientType+'.png');
-    })
-})
-
-socket.on('attempt', fillIngredient => {
-    fillIngredients.push({ingredientType: fillIngredient})
-    fillIngredients.forEach(ingredient => {
-        ingredient.imageFile = loadImage('src/'+ingredient.ingredientType+'.png');
-    })
-    console.log(fillIngredients);
-})
 
 
 function mupiLoadImages() {
     for (let i = 0; i < 7; i++) {
-        mupiImageFiles[i] = loadImage('src\MUPI'+i+'.jpg')
-        
+        mupiImageFiles[i] = loadImage('src/MUPI'+i+'.jpg')
     }
+    mupiImageFiles[20] = loadImage('src/pan.png')
 }
 
 

@@ -4,8 +4,8 @@ class Ingredient {
         this.y = 0;
         this.type = Math.floor(random(0, 10));
         this.ingredientRandom();
+        this.imageFile = loadImage('src/'+this.ingredientType+'.png');
     }
-
     ingredientRandom() {
         switch (this.type) {
             case 0:
