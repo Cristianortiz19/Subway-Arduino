@@ -20,7 +20,10 @@ function setup() {
     canvas.style('right', '0');
     background(0);
     mupiLoadImages();
-
+    //Crear 6 Ingredientes aleatorios
+    for (let i = 0; i < 5; i++) {
+        ingredients.push(new Ingredient(windowWidth/2, (45 * i) + 170));
+    }
 }
 
 function draw() {
@@ -74,6 +77,15 @@ function draw() {
     }
 }
 
+//Cowndown
+timer = function() {
+    setInterval(function() {
+        if(count > 0){
+            count --;
+        }
+    }, 1000);
+}
+
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 }
@@ -102,19 +114,12 @@ socket.on('attempt', fillIngredient => {
     console.log(fillIngredients);
 })
 
-/*mupiIngredients.forEach(element => {
-    ingredientsFiles.push(loadImage('src/'+element.ingredientType+'.png'))
-});*/
 
 function mupiLoadImages() {
-    mupiImageFiles[0] = loadImage('src/MUPI 0.jpg')
-    mupiImageFiles[1] = loadImage('src/MUPI 1.jpg')
-    mupiImageFiles[2] = loadImage('src/MUPI 2.jpg')
-    mupiImageFiles[3] = loadImage('src/MUPI 3.jpg')
-    mupiImageFiles[4] = loadImage('src/MUPI 4.jpg')
-    mupiImageFiles[5] = loadImage('src/MUPI 5.jpg')
-    mupiImageFiles[6] = loadImage('src/MUPI 6.jpg')
-    mupiImageFiles[20] = loadImage('src/pan.png');
+    for (let i = 0; i < 7; i++) {
+        mupiImageFiles[i] = loadImage('src\MUPI'+i+'.jpg')
+        
+    }
 }
 
 

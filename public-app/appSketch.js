@@ -1,77 +1,3 @@
-class Ingredient {
-    constructor(){
-        this.x = 0;
-        this.y = 0;
-        this.type = Math.floor(random(0, 10));
-        this.ingredientRandom();
-    }
-
-    ingredientRandom() {
-        switch (this.type) {
-            case 0:
-                this.ingredientType = 'Cebolla';
-                break;
-            case 1:
-                this.ingredientType = 'Lechuga';
-                break;
-            case 2:
-                this.ingredientType = 'Pepinillos';
-                break;
-            case 3:
-                this.ingredientType = 'Queso';
-                break;
-            case 4:
-                this.ingredientType = 'Tomate';
-                break;
-            case 5:
-                this.ingredientType = 'Camarones';
-                break;
-            case 6:
-                this.ingredientType = 'Champiñones';
-                break;
-            case 7:
-                this.ingredientType = 'Mostaza';
-                break;
-            case 8:
-                this.ingredientType = 'BBQ';
-                break;
-            case 9:
-                this.ingredientType = 'Tocineta';
-                break;
-            case 10:
-                this.ingredientType = 'Tocineta';
-                break;
-            default:
-                break;
-        }
-    }
-
-    getX() {
-        return this.x;
-    }
-
-    getY() {
-        return this.y;
-    }
-
-    setX(newX) {
-        this.x = newX;
-    }
-
-    setY(newY) {
-        this.y = newY;
-    }
-}
-
-//Cowndown
-timer = function() {
-    setInterval(function() {
-        if(count > 0){
-            count --;
-        }
-    }, 1000);
-}
-
 const URL = `https://${window.location.hostname}`;
 let socket = io(URL, { path: '/real-time' });
 
@@ -114,11 +40,6 @@ function setup() {
     controllerY = windowHeight / 2;
     background(0);
     angleMode(DEGREES);
-    //Crear 6 Ingredientes aleatorios
-    for (let i = 0; i < 5; i++) {
-        ingredients.push(new Ingredient(windowWidth/2, (45 * i) + 170));
-    }
-
     ingredients.forEach(element => {
         correct.push(element.ingredientType);
         sendIngredient.push({ingredientType: element.ingredientType})
