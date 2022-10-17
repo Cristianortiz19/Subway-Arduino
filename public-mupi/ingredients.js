@@ -9,37 +9,37 @@ class Ingredient {
     ingredientRandom() {
         switch (this.type) {
             case 0:
-                this.ingredientType = 'Cebolla';
-                break;
-            case 1:
                 this.ingredientType = 'Lechuga';
                 break;
-            case 2:
-                this.ingredientType = 'Pepinillos';
-                break;
-            case 3:
-                this.ingredientType = 'Queso';
-                break;
-            case 4:
-                this.ingredientType = 'Tomate';
-                break;
-            case 5:
-                this.ingredientType = 'Camarones';
-                break;
-            case 6:
+            case 1:
                 this.ingredientType = 'Champiñones';
                 break;
-            case 7:
+            case 2:
+                this.ingredientType = 'Tomate';
+                break;
+            case 3:
+                this.ingredientType = 'Cebolla';
+                break;
+            case 4:
+                this.ingredientType = 'Pepinillos';
+                break;
+            case 5:
+                this.ingredientType = 'Tocineta';
+                break;
+            case 6:
                 this.ingredientType = 'Mostaza';
                 break;
+            case 7:
+                this.ingredientType = 'Camarones';
+                break;
             case 8:
-                this.ingredientType = 'BBQ';
+                this.ingredientType = 'Queso';
                 break;
             case 9:
-                this.ingredientType = 'Tocineta';
+                this.ingredientType = 'BBQ';
                 break;
             case 10:
-                this.ingredientType = 'Tocineta';
+                this.ingredientType = 'BBQ';
                 break;
             default:
                 break;
