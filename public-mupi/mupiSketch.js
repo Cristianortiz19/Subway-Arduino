@@ -2,7 +2,7 @@ const NGROK = `http://${window.location.hostname}:5050`;
 let socket = io(NGROK, { path: '/real-time' });
 console.log('Server IP: ', NGROK);
 
-let mupiScreen = 5;
+let mupiScreen = 1;
 let ingredients = [];
 let userSandwich = [];
 
@@ -86,16 +86,16 @@ function draw() {
         case 5:
             imageMode(CORNER);
             image(mupiImageFiles[5], 0, 0, 480, 720);
-            break;
-        case 6:
-            imageMode(CORNER);
-            image(mupiImageFiles[6], 0, 0, 480, 720);
             socket.on('mupi-status', mupiStatus => {
                 console.log(mupiStatus)
                 if(mupiStatus == 'connected'){
                     mupiScreen = 1;
                 }
             })
+            break;
+        case 6:
+            imageMode(CORNER);
+            image(mupiImageFiles[6], 0, 0, 480, 720);
             break;
         case 8:
             break;
@@ -153,11 +153,12 @@ socket.on('arduinoData', (arduinoMessage) => {
                 if(index == 10 && element == 1){
                     mupiScreen = 3;
                     count = 10;
+                    sizeChange = 0;
                     timer();
                 }
                 break;
             case 3:
-                screen = 2;
+                //screen = 2;
                 break;
             case 4:
                 if(element == 1 && userSandwich.length < 5){
@@ -170,12 +171,12 @@ socket.on('arduinoData', (arduinoMessage) => {
                 break;
             case 6:
                 if(index == 10 && element == 1){
+                    mupiScreen = 1;
                     ingredients = [];
                     correct = [];
                     userSandwich = [];
                     userAttempt = [];
                     createIngredients();
-                    mupiScreen = 1;
                 }
                 break;
             default:
