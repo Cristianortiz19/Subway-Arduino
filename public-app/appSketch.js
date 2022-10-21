@@ -74,6 +74,9 @@ function draw() {
             break;
         case 1:
             image(imageFiles[1], 0, 0, 395, 853);
+            userName.style('display', 'none')
+            email.style('display', 'none')
+            submitButton.style('display', 'none')
             break;
     }
 }
