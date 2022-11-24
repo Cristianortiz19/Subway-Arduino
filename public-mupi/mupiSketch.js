@@ -18,6 +18,15 @@ let correct = [];
 let userAttempt = [];
 let isCorrect = false;
 
+let source = 'src/LoopSong.mp3'
+let audio = document.createElement("audio")
+audio.autoplay = true
+audio.load()
+audio.addEventListener('load', () => {
+    audio.play()
+}, true)
+audio.src = source;
+
 function setup() {
     frameRate(60);
     canvas = createCanvas(windowWidth, windowHeight);
@@ -29,7 +38,7 @@ function setup() {
     mupiLoadImages();
     //Crear 6 Ingredientes aleatorios
     createIngredients();
-
+    timer();
     fonts[0] = loadFont('src/Poppins-Medium.otf');
 }
 
@@ -128,14 +137,12 @@ function mupiLoadImages() {
     mupiImageFiles[20] = loadImage('src/pan.png');
     mupiImageFiles[100] = loadImage('src/Lechuga.png');
     mupiImageFiles[101] = loadImage('src/Champiñones.png');
-    mupiImageFiles[102] = loadImage('src/Tomate.png');
+    mupiImageFiles[102] = loadImage('src/Mostaza.png');
     mupiImageFiles[103] = loadImage('src/Cebolla.png');
-    mupiImageFiles[104] = loadImage('src/Pepinillos.png');
-    mupiImageFiles[105] = loadImage('src/Tocineta.png');
-    mupiImageFiles[106] = loadImage('src/Mostaza.png');
-    mupiImageFiles[107] = loadImage('src/Camarones.png');
-    mupiImageFiles[108] = loadImage('src/Queso.png');
-    mupiImageFiles[109] = loadImage('src/BBQ.png');
+    mupiImageFiles[104] = loadImage('src/Tocineta.png');
+
+    //soundFormats('mp3')
+    //songFiles[0] = loadSound('src/LoopSong.mp3');
 }
 
 socket.on('arduinoData', (arduinoMessage) => {
@@ -145,16 +152,16 @@ socket.on('arduinoData', (arduinoMessage) => {
                 
                 break;
             case 1:
-                if(index == 10 && element == 1){
+                if(index == 5 && element == 1){
                     mupiScreen = 2;
+                    //songFiles[0].play();
                 }
                 break;
             case 2:
-                if(index == 10 && element == 1){
+                if(index == 5 && element == 1){
                     mupiScreen = 3;
                     count = 10;
                     sizeChange = 0;
-                    timer();
                 }
                 break;
             case 3:
@@ -164,13 +171,13 @@ socket.on('arduinoData', (arduinoMessage) => {
                 if(element == 1 && userSandwich.length < 5){
                     addIngredient(index);
                 }
-                if(index == 10 && element == 1){
+                if(index == 5 && element == 1){
                     userSandwich.splice(userSandwich.length - 1, 1);
                     userAttempt.splice(userAttempt.length - 1, 1);
                 }
                 break;
             case 6:
-                if(index == 10 && element == 1){
+                if(index == 5 && element == 1){
                     mupiScreen = 1;
                     ingredients = [];
                     correct = [];
@@ -196,38 +203,17 @@ function addIngredient(index) {
             userAttempt.push('Champiñones');
             break;
         case 2:
-            userSandwich.push({ingredient: 'Tomate', index: 2})
-            userAttempt.push('Tomate');
+            userSandwich.push({ingredient: 'Mostaza', index: 2})
+            userAttempt.push('Mostaza');
             break;
         case 3:
             userSandwich.push({ingredient: 'Cebolla', index: 3})
             userAttempt.push('Cebolla');
             break;
-            case 4:
-            userSandwich.push({ingredient: 'Pepinillos', index: 4})
-            userAttempt.push('Pepinillos');
-            break;
-        case 5:
-            userSandwich.push({ingredient: 'Tocineta', index: 5})
+        case 4:
+            userSandwich.push({ingredient: 'Tocineta', index: 4})
             userAttempt.push('Tocineta');
             break;
-        case 6:
-            userSandwich.push({ingredient: 'Mostaza', index: 6})
-            userAttempt.push('Mostaza');
-            break;
-        case 7:
-            userSandwich.push({ingredient: 'Camarones', index: 7})
-            userAttempt.push('Camarones');
-            break;
-        case 8:
-            userSandwich.push({ingredient: 'Queso', index: 8})
-            userAttempt.push('Queso');
-            break;
-        case 9:
-            userSandwich.push({ingredient: 'BBQ', index: 9})
-            userAttempt.push('BBQ');
-            break;
-    
         default:
             break;
     }

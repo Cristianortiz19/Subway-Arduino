@@ -2,7 +2,7 @@ class Ingredient {
     constructor(){
         this.x = 0;
         this.y = 0;
-        this.type = Math.floor(random(0, 10));
+        this.type = Math.floor(random(0, 5));
         this.ingredientRandom();
         this.imageFile = loadImage('src/'+this.ingredientType+'.png');
     }
@@ -15,31 +15,13 @@ class Ingredient {
                 this.ingredientType = 'Champiñones';
                 break;
             case 2:
-                this.ingredientType = 'Tomate';
+                this.ingredientType = 'Mostaza';
                 break;
             case 3:
                 this.ingredientType = 'Cebolla';
                 break;
             case 4:
-                this.ingredientType = 'Pepinillos';
-                break;
-            case 5:
                 this.ingredientType = 'Tocineta';
-                break;
-            case 6:
-                this.ingredientType = 'Mostaza';
-                break;
-            case 7:
-                this.ingredientType = 'Camarones';
-                break;
-            case 8:
-                this.ingredientType = 'Queso';
-                break;
-            case 9:
-                this.ingredientType = 'BBQ';
-                break;
-            case 10:
-                this.ingredientType = 'BBQ';
                 break;
             default:
                 break;
