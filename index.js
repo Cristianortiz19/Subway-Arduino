@@ -6,7 +6,7 @@ const { FireStoreDB } = require("./firebase-config.js")
 const PORT = 5050;
 
 const leadsCollection = new FireStoreDB('Leads');
-const installationCollection = new FireStoreDB('Installations')
+const interactionsCollection = new FireStoreDB('StartInteraction');
 
 // ⚙️ HTTPS COMMUNICATION SETUP________________________________________________
 const app = express();
@@ -72,12 +72,12 @@ app.get('/leads', (request, response) => {
         })
 })
 
-app.get('/installations', (request, response) => {
+app.get('/interactions', (request, response) => {
     timeStamp();
-    installationCollection.getCollection()
-        .then((installations) => {
-            console.log(installations);
-            response.send(installations);
+    interactionsCollection.getCollection()
+        .then((interactions) => {
+            console.log(interactions);
+            response.send(interactions);
         })
 })
 
@@ -90,11 +90,12 @@ app.post('/add-new-lead', (request, response) => {
     response.status(200).end();
 })
 
-app.post('/add-new-installation', (request, response) => {
-    timeStamp(),
+app.post('/add-new-interaction', (request, response) => {
+    timeStamp();
     console.log(request.body);
     request.body.timeStamp = timeStamp();
-    installationCollection.addNewDocument(request.body);
+    request.body.location = "Universidades"
+    interactionsCollection.addNewDocument(request.body);
     response.status(200).end();
 })
 

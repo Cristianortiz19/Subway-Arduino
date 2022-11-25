@@ -154,6 +154,7 @@ socket.on('arduinoData', (arduinoMessage) => {
             case 1:
                 if(index == 5 && element == 1){
                     mupiScreen = 2;
+                    startInteraction();
                     //songFiles[0].play();
                 }
                 break;
@@ -310,6 +311,20 @@ function createIngredients() {
         correct.push(element.ingredientType);
     });
     console.log(correct)
+}
+
+let interaction = {
+    status: "Alive"
+}
+async function startInteraction() {
+    const data = {
+        method: 'POST',
+        headers: {
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify(interaction)
+    }
+    await fetch('/add-new-interaction', data);
 }
 
 
